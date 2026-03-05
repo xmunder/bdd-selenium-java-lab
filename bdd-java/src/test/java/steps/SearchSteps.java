@@ -16,18 +16,32 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 public class SearchSteps {
-    private WebDriver driver;
+	
+    private static WebDriver driver;
+		private static String WIDTH = "1920";
+		private static String HEIGHT = "1080";
+		private static String LANG = "es-ES";
+		private static String ACCEPT_LANG = "es-ES,es";
+		private static String REMOTE_URL = "http://selenium:4444/wd/hub";
+		private static String BROWSER_URL = "https://duckduckgo.com/";
+
+    public static WebDriver getDriver() {
+        return driver;
+    }
 
     @Before
     public void setUp() {
         try {
-            String remoteUrl = System.getenv().getOrDefault("SELENIUM_REMOTE_URL", "http://selenium:4444/wd/hub");
+            String remoteUrl = System.getenv().getOrDefault("SELENIUM_REMOTE_URL", REMOTE_URL);
             ChromeOptions options = new ChromeOptions();
 						options.addArguments("--headless");
             options.addArguments("--disable-gpu");
             options.addArguments("--no-sandbox");
             options.addArguments("--disable-dev-shm-usage");
             options.addArguments("--remote-allow-origins=*");
+						options.addArguments("--lang=" + LANG);
+						options.addArguments("--accept-lang=" + ACCEPT_LANG);	
+						options.addArguments("--window-size=" + WIDTH + "," + HEIGHT);
             driver = new RemoteWebDriver(new URL(remoteUrl), options);
             driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         } catch (MalformedURLException e) {
@@ -40,7 +54,7 @@ public class SearchSteps {
 
     @Given("I am on the Google search page")
     public void i_am_on_the_google_search_page() {
-        driver.get("https://duckduckgo.com/");
+        driver.get(BROWSER_URL);
     }
 
     @When("I search for {string}")
