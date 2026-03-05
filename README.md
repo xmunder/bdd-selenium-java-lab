@@ -30,7 +30,7 @@ Se siguió el flujo clásico del laboratorio:
 Escenario de búsqueda para validar el flujo end-to-end con Cucumber + Selenium.
 
 Archivo feature:
-- `bdd-java/src/test/java/features/bing_search.feature`
+- `bdd-java/src/test/java/features/google_search.feature`
 
 Steps principales:
 - abrir buscador
@@ -44,7 +44,7 @@ Se agregó un escenario nuevo en Wikipedia para practicar BDD con interacción d
 - **cambiar tamaño de texto** en el panel de Apariencia (opción "Grande")
 
 Archivo feature:
-- `bdd-java/src/test/java/features/wikipedia_text_filter.feature`
+- `bdd-java/src/test/java/features/wikipedia_text_size_filter.feature`
 
 Steps dedicados (archivo separado):
 - `bdd-java/src/test/java/steps/WikipediaAppearanceSteps.java`
