@@ -1,0 +1,26 @@
+  {
+    "name": "BDD Java17 + Cucumber + Selenium",
+    "dockerComposeFile": "docker-compose.yml",
+    "service": "dev",
+    "workspaceFolder": "/workspaces/bdd-selenium-java-lab",
+    "runServices": ["selenium"],
+    "features": {
+      "ghcr.io/devcontainers/features/java:1": {
+        "version": "17"
+      },
+      "ghcr.io/devcontainers-extra/features/maven-sdkman:2": {}
+    },
+    "containerEnv": {
+      "SELENIUM_REMOTE_URL": "http://selenium:4444/wd/hub"
+    },
+    "customizations": {
+      "vscode": {
+        "extensions": [
+          "vscjava.vscode-java-pack",
+          "vscjava.vscode-maven"
+        ]
+      }
+    },
+    "remoteUser": "vscode",
+    "postCreateCommand": "java -version && mvn -version"
+  }
