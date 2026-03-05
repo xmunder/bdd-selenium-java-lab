@@ -14,7 +14,12 @@ import java.time.Duration;
 
 public class WikipediaAppearanceSteps {
 
-		private static String WIKIPEDIA_URL = "https://es.wikipedia.org/wiki/Wikipedia:Portada";
+    private static final String WIKIPEDIA_URL = "https://es.wikipedia.org/wiki/Wikipedia:Portada";
+    private final TestContext context;
+
+    public WikipediaAppearanceSteps(TestContext context) {
+        this.context = context;
+    }
 
     @Given("I am on the Wikipedia home page")
     public void i_am_on_the_wikipedia_home_page() {
@@ -73,7 +78,7 @@ public class WikipediaAppearanceSteps {
     }
 
     private WebDriver getDriver() {
-        WebDriver driver = SearchSteps.getDriver();
+        WebDriver driver = context.getDriver();
         if (driver == null) {
             throw new IllegalStateException("WebDriver is not initialized. Ensure Cucumber hooks run before this step.");
         }
